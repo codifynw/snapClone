@@ -1,0 +1,20 @@
+body {
+  background-color: #24272a;
+  color: white;
+}
+
+.snap-list {
+  display: flex;
+  height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.snap {
+  display: flex;
+  justify-content: space-between;
+  background-color: #343434;
+  padding: 20px 10px;
+  margin-bottom: 5px;
+}

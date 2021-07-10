@@ -1,0 +1,206 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Barbara"
+    },
+    {
+      "id": 2,
+      "name": "Martha"
+    },
+    {
+      "id": 3,
+      "name": "Tito C"
+    },
+    {
+      "id": 4,
+      "name": "Kelly D"
+    },
+    {
+      "id": 5,
+      "name": "Bobby K"
+    },
+    {
+      "id": 6,
+      "name": "Omar"
+    },
+    {
+      "id": 7,
+      "name": "Jasmine"
+    },
+    {
+      "id": 8,
+      "name": "Alexa L"
+    }
+  ],
+  "snaps": [
+    {
+      "duration": 2,
+      "imgUrl": "https://picsum.photos/400/600?image=0",
+      "from": 1,
+      "timestamp": 1599857785955,
+      "id": 1
+    },
+    {
+      "duration": 3,
+      "imgUrl": "https://picsum.photos/400/600?image=1",
+      "from": 2,
+      "timestamp": 1599856551388,
+      "id": 2
+    },
+    {
+      "duration": 3,
+      "imgUrl": "https://picsum.photos/400/600?image=2",
+      "from": 3,
+      "timestamp": 1599855316821,
+      "id": 3
+    },
+    {
+      "duration": 6,
+      "imgUrl": "https://picsum.photos/400/600?image=3",
+      "from": 4,
+      "timestamp": 1599854082254,
+      "id": 4
+    },
+    {
+      "duration": 8,
+      "imgUrl": "https://picsum.photos/400/600?image=4",
+      "from": 5,
+      "timestamp": 1599852847687,
+      "id": 5
+    },
+    {
+      "duration": 4,
+      "imgUrl": "https://picsum.photos/400/600?image=5",
+      "from": 6,
+      "timestamp": 1599851613121,
+      "id": 6
+    },
+    {
+      "duration": 5,
+      "imgUrl": "https://picsum.photos/400/600?image=6",
+      "from": 7,
+      "timestamp": 1599850378554,
+      "id": 7
+    },
+    {
+      "duration": 7,
+      "imgUrl": "https://picsum.photos/400/600?image=7",
+      "from": 8,
+      "timestamp": 1599849143987,
+      "id": 8
+    },
+    {
+      "duration": 5,
+      "imgUrl": "https://picsum.photos/400/600?image=8",
+      "from": 1,
+      "timestamp": 1599847909420,
+      "id": 9
+    },
+    {
+      "duration": 10,
+      "imgUrl": "https://picsum.photos/400/600?image=9",
+      "from": 2,
+      "timestamp": 1599846674853,
+      "id": 10
+    },
+    {
+      "duration": 3,
+      "imgUrl": "https://picsum.photos/400/600?image=10",
+      "from": 3,
+      "timestamp": 1599845440286,
+      "id": 11
+    },
+    {
+      "duration": 6,
+      "imgUrl": "https://picsum.photos/400/600?image=11",
+      "from": 4,
+      "timestamp": 1599844205720,
+      "id": 12
+    },
+    {
+      "duration": 8,
+      "imgUrl": "https://picsum.photos/400/600?image=12",
+      "from": 5,
+      "timestamp": 1599842971160,
+      "id": 13
+    },
+    {
+      "duration": 4,
+      "imgUrl": "https://picsum.photos/400/600?image=13",
+      "from": 6,
+      "timestamp": 1599841736593,
+      "id": 14
+    },
+    {
+      "duration": 5,
+      "imgUrl": "https://picsum.photos/400/600?image=14",
+      "from": 7,
+      "timestamp": 1599840502026,
+      "id": 15
+    },
+    {
+      "duration": 7,
+      "imgUrl": "https://picsum.photos/400/600?image=15",
+      "from": 8,
+      "timestamp": 1599839267459,
+      "id": 16
+    },
+    {
+      "duration": 5,
+      "imgUrl": "https://picsum.photos/400/600?image=16",
+      "from": 1,
+      "timestamp": 1599838032892,
+      "id": 17
+    },
+    {
+      "duration": 10,
+      "imgUrl": "https://picsum.photos/400/600?image=17",
+      "from": 2,
+      "timestamp": 1599836798325,
+      "id": 18
+    },
+    {
+      "duration": 3,
+      "imgUrl": "https://picsum.photos/400/600?image=18",
+      "from": 3,
+      "timestamp": 1599835563763,
+      "id": 19
+    },
+    {
+      "duration": 6,
+      "imgUrl": "https://picsum.photos/400/600?image=19",
+      "from": 4,
+      "timestamp": 1599834329196,
+      "id": 20
+    },
+    {
+      "duration": 8,
+      "imgUrl": "https://picsum.photos/400/600?image=20",
+      "from": 5,
+      "timestamp": 1599833094629,
+      "id": 21
+    },
+    {
+      "duration": 4,
+      "imgUrl": "https://picsum.photos/400/600?image=21",
+      "from": 6,
+      "timestamp": 1599831860063,
+      "id": 22
+    },
+    {
+      "duration": 5,
+      "imgUrl": "https://picsum.photos/400/600?image=22",
+      "from": 7,
+      "timestamp": 1599830625496,
+      "id": 23
+    },
+    {
+      "duration": 7,
+      "imgUrl": "https://picsum.photos/400/600?image=23",
+      "from": 8,
+      "timestamp": 1599829390929,
+      "id": 24
+    }
+  ]
+}
