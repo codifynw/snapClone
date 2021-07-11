@@ -7,7 +7,6 @@ export type Snap = {
 };
 
 export type ImgOverlay = {
-  show: boolean,
   duration: number
   imgUrl: string
 }

@@ -1,23 +1,33 @@
 import React from "react";
+import { ImgOverlay } from "../types";
 
-export default class ImageModal extends React.Component {
-    constructor(props) {
-        console.log('PROPS: ', props);
-        super(props);
-        this.state = {
-            isOpen: false
-        };
-      }
+type ModalListProps = {
+    hideOverlay: (boolValue: boolean) => void;
+    args: ImgOverlay;
+};
   
-    handleShowDialog = () => {
-      this.setState({ isOpen: !this.state.isOpen });
-      console.log('clicked');
-    };
+export default class ImageModal extends React.Component<ModalListProps> {
+    componentDidMount() {
+        setTimeout(
+            function() {
+                this.props.hideOverlay(false)
+                // NEED TO CLEAR IMAGE HERE OR ADD
+                // LOADING IMAGE
+            }
+            .bind(this),
+            this.props.args.duration * 1000
+        );
+    }
+  
+    // handleShowDialog = () => {
+    //   this.setState({ isOpen: !this.state.isOpen });
+    //   console.log('clicked');
+    // };
   
     render() {
       return (
         <div>
-            {this.state.isOpen ? <h1>SHOW ME</h1> : ''}
+            <h1>SHOW ME</h1>
         </div>
       );
     }
