@@ -3,6 +3,7 @@ import React from "react";
 import fetchData from "../services/fetchData";
 import "../styles/SnapsList.css";
 import { Snap } from "../types";
+import ReactTimeago from 'react-timeago'
 
 type SnapListProps = {
   onLoad: (snaps: Snap[]) => void;
@@ -13,9 +14,10 @@ let convertTimeStamp = function (unix_timestamp) {
   return new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(unix_timestamp)
 }
 
-// let showImage = function (imgUrl) {
-//   console.log('imageUrl: ', imgUrl)
-// }
+let getTimeago = function (timestamp) {
+  let date = new Date(timestamp)
+  return date.toUTCString()
+}
 
 class SnapsList extends React.PureComponent<SnapListProps> {
   componentDidMount() {
@@ -42,12 +44,11 @@ class SnapsList extends React.PureComponent<SnapListProps> {
         {snaps.length ? (
           // <p>{JSON.stringify(snaps)}</p>
           snaps.map((snap, index) => {
-            // return (<div key={snap.id}>{(new Date(snap.timestamp*1000)+'').slice(16,24)}</div>)
-            // return (<div key={snap.id}>{oneLineConvertTimeStamp(snap.timestamp)}</div>)
             return (
               <div className="snap" key={snap.id}>
-                <div>{convertTimeStamp(snap.timestamp)}</div>
-                <button onClick={() => this.handleClick(snap.imgUrl)}></button>
+                <div className="snap-from">{snap.from}</div>
+                <ReactTimeago date={getTimeago(snap.timestamp)} />
+                <button className="snap-action" onClick={() => this.handleClick()}>View</button>
               </div>
             )
           })

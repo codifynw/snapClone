@@ -23,6 +23,7 @@ class App extends Component<void, AppState> {
 
     return (
       <div>
+        <div id="header" />
         <SnapsList snaps={snaps} onLoad={this.onLoadSnaps} />
       </div>
     );
