@@ -46,8 +46,11 @@ class SnapsList extends React.PureComponent<SnapListProps> {
           snaps.map((snap, index) => {
             return (
               <div className="snap" key={snap.id}>
-                <div className="snap-from">{snap.from}</div>
-                <ReactTimeago date={getTimeago(snap.timestamp)} />
+                <div className="avatar"></div>
+                <div className="snap-info">
+                  <div className="snap-from">Sender: {snap.from}</div>
+                  <ReactTimeago date={getTimeago(snap.timestamp)} />
+                </div>
                 <button className="snap-action" onClick={() => this.handleClick()}>View</button>
               </div>
             )
