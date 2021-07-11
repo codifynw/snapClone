@@ -1,21 +1,21 @@
 import React from "react";
 import { ImgOverlay } from "../types";
+import '../styles/ImageModal.css'
 
 type ModalListProps = {
-    hideOverlay: (boolValue: boolean) => void;
+    setShowOverlay: (boolValue: boolean) => void;
     args: ImgOverlay;
 };
   
 export default class ImageModal extends React.Component<ModalListProps> {
     componentDidMount() {
-        setTimeout(
-            function() {
-                this.props.hideOverlay(false)
+        debugger
+        setTimeout(() => {
+            console.log('after timeout')
+                this.props.setShowOverlay(false)
                 // NEED TO CLEAR IMAGE HERE OR ADD
                 // LOADING IMAGE
-            }
-            .bind(this),
-            this.props.args.duration * 1000
+            }, this.props.args.duration * 1000
         );
     }
   
@@ -26,8 +26,8 @@ export default class ImageModal extends React.Component<ModalListProps> {
   
     render() {
       return (
-        <div>
-            <h1>SHOW ME</h1>
+        <div id="imageContainer">
+            <img src={this.props.args.imgUrl}></img>
         </div>
       );
     }

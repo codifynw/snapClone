@@ -10,3 +10,8 @@ export type ImgOverlay = {
   duration: number
   imgUrl: string
 }
+
+export type User = {
+  id: number
+  name: string
+}

@@ -35,7 +35,7 @@ class App extends Component<{}, AppState> {
     })
   };
 
-  hideOverlay = (boolValue) => {
+  setShowOverlay = (boolValue) => {
     this.setState({ 
       showOverlay: boolValue
     })    
@@ -47,7 +47,7 @@ class App extends Component<{}, AppState> {
     return (
       <div>
         <div id="header" />
-        {this.state.showOverlay ? <ImageModal args={this.state.imgOverlay} hideOverlay={this.hideOverlay} /> : '' }
+        {this.state.showOverlay ? <ImageModal args={this.state.imgOverlay} setShowOverlay={this.setShowOverlay} /> : '' }
         <SnapsList setImgOverlay={this.setImgOverlay} snaps={snaps} onLoad={this.onLoadSnaps} />
       </div>
     );

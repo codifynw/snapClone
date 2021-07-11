@@ -2,7 +2,7 @@ import React from "react";
 
 import fetchData from "../services/fetchData";
 import "../styles/SnapsList.css";
-import { Snap } from "../types";
+import { Snap, User } from "../types";
 import ReactTimeago from 'react-timeago'
 
 type SnapListProps = {
@@ -10,6 +10,10 @@ type SnapListProps = {
   setImgOverlay: (setImgOverlay) => void;
   onLoad: (snaps: Snap[]) => void;
 };
+
+type SnapListState = {
+  users: User[];
+}
 
 // let convertTimeStamp = function (unix_timestamp) {
 //   return new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(unix_timestamp)
@@ -20,18 +24,32 @@ let getTimeago = function (timestamp) {
   return date.toUTCString()
 }
 
-class SnapsList extends React.PureComponent<SnapListProps> {
-  
+class SnapsList extends React.PureComponent<SnapListProps, SnapListState> {
+  state = {
+    users: []
+  }
+
   componentDidMount() {
     const { onLoad } = this.props;
     
     fetchData()
-      .then((x) => x.snaps)
+      .then((x) => {
+        this.setState({users: x.users});
+        return x.snaps
+      })
       .then(onLoad)
       .catch(console.error);
+
+    // fetchData()
+    //   .then((x) => this.setState({users: x.users})
   }
   
-  handleClick(snap:object) {
+  // Do not use
+  // handleClick(snap:object) {
+  //   this.props.setImgOverlay(snap);
+  // }
+
+  handleClick = (snap:Snap) => {
     this.props.setImgOverlay(snap);
   }
   
@@ -42,14 +60,14 @@ class SnapsList extends React.PureComponent<SnapListProps> {
 
     return (
       <div className="snap-list">
-        {snaps.length ? (
+        {snaps.length && this.state.users.length ? (
           // <p>{JSON.stringify(snaps)}</p>
           snaps.map((snap, index) => {
             return (
               <div className="snap" key={snap.id}>
                 <div className="avatar"></div>
                 <div className="snap-info">
-                  <div className="snap-from">Sender: {snap.from}</div>
+                  <div className="snap-from">Sender: {this.state.users.find((user) => user.id === snap.from).name}</div>
                   <ReactTimeago date={getTimeago(snap.timestamp)} />
                 </div>
                 <button 
