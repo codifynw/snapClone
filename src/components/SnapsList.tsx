@@ -34,7 +34,6 @@ class SnapsList extends React.PureComponent<SnapListProps> {
   }
   
     handleClick(snap:object) {
-      console.log('snap: ', snap);
       this.props.setImgOverlay(snap);
     }
   

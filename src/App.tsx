@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import SnapsList from "./components/SnapsList";
 import ImageModal from "./components/ImageModal";
-import CounterPractice from './components/CounterPractice';
+// import CounterPractice from './components/CounterPractice';
 import "./styles/App.css";
 import { Snap, ImgOverlay } from "./types";
 
@@ -21,17 +21,26 @@ class App extends Component<void, AppState> {
     };
   }
 
-  onLoadSnaps = (snaps) => this.setState(() => ({ snaps }));
+  onLoadSnaps = (snaps) => this.setState(() => ({ snaps: snaps }));
+  setImgOverlay = (snap) => this.setState(() => ({ 
+    imgOverlay: {
+      show: true,
+      duration: snap.duration,
+      imgUrl: snap.imgUrl
+    }
+  }));
 
-  setImgOverlay(snap) {
-    this.setState({
-      imgOverlay: {
-        show: true,
-        duration: snap.duration,
-        imgUrl: snap.imgUrl
-      }
-    })
-  }
+  // below doesn't work because not arrow function and this has wrong context
+  // setImgOverlay(snap) {
+  //   console.log('snap: ', snap);
+  //   this.setState({
+  //     imgOverlay: {
+  //       show: true,
+  //       duration: snap.duration,
+  //       imgUrl: snap.imgUrl
+  //     }
+  //   })
+  // }
 
   render() {
     const { snaps } = this.state;
@@ -39,9 +48,9 @@ class App extends Component<void, AppState> {
     return (
       <div>
         <div id="header" />
-        <ImageModal />
-        {/* <SnapsList setImgOverlay={this.setImgOverlay} snaps={snaps} onLoad={this.onLoadSnaps} /> */}
-        <CounterPractice />
+        <ImageModal args={this.state.imgOverlay} />
+        <SnapsList setImgOverlay={this.setImgOverlay} snaps={snaps} onLoad={this.onLoadSnaps} />
+        {/* <CounterPractice /> */}
       </div>
     );
   }

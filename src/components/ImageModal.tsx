@@ -1,7 +1,13 @@
 import React from "react";
 
 export default class ImageModal extends React.Component {
-    state = { isOpen: false };
+    constructor(props) {
+        console.log('PROPS: ', props);
+        super(props);
+        this.state = {
+            isOpen: false
+        };
+      }
   
     handleShowDialog = () => {
       this.setState({ isOpen: !this.state.isOpen });
@@ -11,7 +17,7 @@ export default class ImageModal extends React.Component {
     render() {
       return (
         <div>
-            {this.state.isOpen ? <h1>It is shown</h1> : ''}
+            {this.state.isOpen ? <h1>SHOW ME</h1> : ''}
         </div>
       );
     }
