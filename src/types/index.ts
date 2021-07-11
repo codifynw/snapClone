@@ -5,3 +5,9 @@ export type Snap = {
   timestamp: number;
   id: number;
 };
+
+export type ImgOverlay = {
+  show: boolean,
+  duration: number
+  imgUrl: string
+}

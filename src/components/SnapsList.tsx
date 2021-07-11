@@ -8,6 +8,8 @@ import ReactTimeago from 'react-timeago'
 type SnapListProps = {
   onLoad: (snaps: Snap[]) => void;
   snaps: Snap[];
+  // Adding this eliminated an error in App.tsx but I'm not sure if it is right.
+  setImgOverlay: (setImgOverlay) => void;
 };
 
 let convertTimeStamp = function (unix_timestamp) {
@@ -21,23 +23,29 @@ let getTimeago = function (timestamp) {
 
 class SnapsList extends React.PureComponent<SnapListProps> {
   componentDidMount() {
-    console.log('this.props: ', this.props);
     const { onLoad } = this.props;
+
+    console.log('onLoad: ', onLoad);
 
     fetchData()
       .then((x) => x.snaps)
       .then(onLoad)
       .catch(console.error);
   }
-
-  handleClick(event: MouseEvent) {
-    console.log('hi')
-  }
-
+  
+    handleClick(snap:object) {
+      console.log('snap: ', snap);
+      this.props.setImgOverlay(snap);
+    }
+  
+    // handleClick(event: MouseEvent) {
+    //   this.props.setImgOverlay('url value');
+    // }
+  
   render() {
     const { snaps } = this.props;
 
-    console.log('snaps: ', snaps)
+    console.log(snaps)
 
     return (
       <div className="snap-list">
@@ -51,7 +59,7 @@ class SnapsList extends React.PureComponent<SnapListProps> {
                   <div className="snap-from">Sender: {snap.from}</div>
                   <ReactTimeago date={getTimeago(snap.timestamp)} />
                 </div>
-                <button className="snap-action" onClick={() => this.handleClick()}>View</button>
+                <button className="snap-action" onClick={() => this.handleClick(snap)}>View</button>
               </div>
             )
           })
