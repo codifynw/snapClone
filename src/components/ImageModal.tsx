@@ -9,8 +9,9 @@ type ModalListProps = {
   
 export default class ImageModal extends React.Component<ModalListProps> {
     componentDidMount() {
-        debugger
+        
         setTimeout(() => {
+            debugger
             console.log('after timeout')
                 this.props.setShowOverlay(false)
                 // NEED TO CLEAR IMAGE HERE OR ADD
@@ -26,8 +27,10 @@ export default class ImageModal extends React.Component<ModalListProps> {
   
     render() {
       return (
-        <div id="imageContainer">
-            <img src={this.props.args.imgUrl}></img>
+        <div 
+            id="imageContainer"
+            style= {{backgroundImage: `url(${this.props.args.imgUrl})`}}
+        >
         </div>
       );
     }
