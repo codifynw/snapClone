@@ -12,7 +12,9 @@ type SnapListProps = {
 };
 
 type SnapListState = {
-  users: User[];
+  users: {
+    [key:number]: User
+  };
 }
 
 // let convertTimeStamp = function (unix_timestamp) {
@@ -26,7 +28,7 @@ let getTimeago = function (timestamp) {
 
 class SnapsList extends React.PureComponent<SnapListProps, SnapListState> {
   state = {
-    users: []
+    users: {}
   }
 
   componentDidMount() {
@@ -34,7 +36,16 @@ class SnapsList extends React.PureComponent<SnapListProps, SnapListState> {
     
     fetchData()
       .then((x) => {
-        this.setState({users: x.users});
+
+        const usersObj = x.users.reduce((acc, user) => {
+          return {
+            ...acc,
+            [user.id]: user
+          }
+        }, {})
+        
+        this.setState({users: usersObj});
+
         return x.snaps
       })
       .then(onLoad)
@@ -57,17 +68,18 @@ class SnapsList extends React.PureComponent<SnapListProps, SnapListState> {
     const { snaps } = this.props;
 
     console.log(snaps)
+    console.log(this.state.users)
 
     return (
       <div className="snap-list">
-        {snaps.length && this.state.users.length ? (
+        {snaps.length && Object.keys(this.state.users).length ? (
           // <p>{JSON.stringify(snaps)}</p>
           snaps.map((snap, index) => {
             return (
               <div className="snap" key={snap.id}>
                 <div className="avatar"></div>
                 <div className="snap-info">
-                  <div className="snap-from">Sender: {this.state.users.find((user) => user.id === snap.from).name}</div>
+                  <div className="snap-from">Sender: {this.state.users[snap.from].name}</div>
                   <ReactTimeago date={getTimeago(snap.timestamp)} />
                 </div>
                 <button 

@@ -7,8 +7,7 @@ import { Snap, ImgOverlay } from "./types";
 
 type AppState = {
   snaps: Snap[];
-  showOverlay: boolean;
-  imgOverlay: ImgOverlay;
+  imgOverlay: ImgOverlay | boolean;
 };
 
 class App extends Component<{}, AppState> {
@@ -19,8 +18,7 @@ class App extends Component<{}, AppState> {
       imgOverlay: {
         duration: 0,
         imgUrl: ''
-      },
-      showOverlay: false
+      }
     };
   }
 
@@ -30,14 +28,13 @@ class App extends Component<{}, AppState> {
       imgOverlay: {
         duration: snap.duration,
         imgUrl: snap.imgUrl
-      }, 
-      showOverlay: true
+      },
     })
   };
 
-  setShowOverlay = (boolValue) => {
+  clearOverlay = () => {
     this.setState({ 
-      showOverlay: boolValue
+      imgOverlay: false
     })    
   }
 
@@ -47,7 +44,7 @@ class App extends Component<{}, AppState> {
     return (
       <div>
         <div id="header" />
-        {this.state.showOverlay ? <ImageModal args={this.state.imgOverlay} setShowOverlay={this.setShowOverlay} /> : '' }
+        { typeof this.state.imgOverlay === 'object' ? <ImageModal args={this.state.imgOverlay} clearOverlay={this.clearOverlay} /> : '' }
         <SnapsList setImgOverlay={this.setImgOverlay} snaps={snaps} onLoad={this.onLoadSnaps} />
       </div>
     );

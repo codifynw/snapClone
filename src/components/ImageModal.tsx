@@ -3,23 +3,37 @@ import { ImgOverlay } from "../types";
 import '../styles/ImageModal.css'
 
 type ModalListProps = {
-    setShowOverlay: (boolValue: boolean) => void;
+    clearOverlay: () => void;
     args: ImgOverlay;
 };
-  
+
 export default class ImageModal extends React.Component<ModalListProps> {
+    state = {
+        timeLeft: 0,
+    }
+
+    countdownInterval;
+    countdownTimeout;
+
     componentDidMount() {
-        
-        setTimeout(() => {
-            debugger
-            console.log('after timeout')
-                this.props.setShowOverlay(false)
-                // NEED TO CLEAR IMAGE HERE OR ADD
-                // LOADING IMAGE
+        this.setState({timeLeft: this.props.args.duration})
+
+        this.countdownInterval = setInterval(() => {
+            this.setState({timeLeft: this.state.timeLeft - 1})
+        }, 1000)
+
+        this.countdownTimeout = setTimeout(() => {
+                this.clearModal()
             }, this.props.args.duration * 1000
         );
     }
   
+    clearModal = () => {
+        clearTimeout(this.countdownTimeout)
+        clearInterval(this.countdownInterval)
+        this.props.clearOverlay()
+    }
+
     // handleShowDialog = () => {
     //   this.setState({ isOpen: !this.state.isOpen });
     //   console.log('clicked');
@@ -29,8 +43,10 @@ export default class ImageModal extends React.Component<ModalListProps> {
       return (
         <div 
             id="imageContainer"
+            onClick={() => this.clearModal()}
             style= {{backgroundImage: `url(${this.props.args.imgUrl})`}}
         >
+            <div>{this.state.timeLeft}</div>
         </div>
       );
     }
