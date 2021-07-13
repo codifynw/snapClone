@@ -1,12 +1,12 @@
 export type Snap = {
-  duration: number;
-  imgUrl: string;
-  from: number;
-  timestamp: number;
-  id: number;
-};
+  duration: number
+  imgUrl: string
+  from: number
+  timestamp: number
+  id: number
+}
 
-export type ImgOverlay = {
+export type ImgOverlayType = {
   duration: number
   imgUrl: string
 }

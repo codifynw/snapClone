@@ -1,69 +1,59 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import SnapsList from "./components/SnapsList";
-import ImageModal from "./components/ImageModal";
-import "./styles/App.css";
-import { Snap, ImgOverlay } from "./types";
+import SnapsList from './components/SnapsList'
+import ImgOverlay from './components/ImageModal'
+import './styles/App.css'
+import { ImgOverlayType, Snap } from './types'
 
 type AppState = {
-  snaps: Snap[];
-  imgOverlay: ImgOverlay | boolean;
-};
+  snaps: Snap[]
+  imgOverlay: ImgOverlayType | boolean
+}
 
 class App extends Component<{}, AppState> {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       snaps: [],
-      imgOverlay: {
-        duration: 0,
-        imgUrl: ''
-      }
-    };
+      imgOverlay: false,
+    }
   }
 
-  onLoadSnaps = (snaps) => this.setState({ snaps: snaps });
-  setImgOverlay = (snap) => {
-    this.setState({ 
+  onLoadSnaps = (snaps) => this.setState(() => ({ snaps }))
+
+  setImgOverlay = (snap: Snap) => {
+    console.log('we got the snap: ', snap)
+    this.setState({
       imgOverlay: {
         duration: snap.duration,
-        imgUrl: snap.imgUrl
+        imgUrl: snap.imgUrl,
       },
     })
-  };
+  }
 
-  clearOverlay = () => {
-    this.setState({ 
-      imgOverlay: false
-    })    
+  setImgOverlayToFalse = () => {
+    this.setState({
+      imgOverlay: false,
+    })
   }
 
   render() {
-    const { snaps } = this.state;
+    const { snaps } = this.state
 
     return (
       <div>
-        <div id="header" />
-        { typeof this.state.imgOverlay === 'object' ? <ImageModal args={this.state.imgOverlay} clearOverlay={this.clearOverlay} /> : '' }
-        <SnapsList setImgOverlay={this.setImgOverlay} snaps={snaps} onLoad={this.onLoadSnaps} />
+        {typeof this.state.imgOverlay === 'object' ? (
+          <ImgOverlay
+            imgOptions={this.state.imgOverlay}
+            setImgOverlayToFalse={this.setImgOverlayToFalse}
+          />
+        ) : (
+          ''
+        )}
+        <SnapsList snaps={snaps} setImgOverlay={this.setImgOverlay} onLoad={this.onLoadSnaps} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
-
-
-
-
-  // below doesn't work because not arrow function and this has wrong context
-  // setImgOverlay(snap) {
-  //   console.log('snap: ', snap);
-  //   this.setState({
-  //     imgOverlay: {
-  //       show: true,
-  //       duration: snap.duration,
-  //       imgUrl: snap.imgUrl
-  //     }
-  //   })
-  // }
+export default App
